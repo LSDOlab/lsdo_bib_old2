@@ -148,7 +148,7 @@ class Bib2Html(object):
 
         doi = ref.fields.get('doi', None)
         if doi is not None and doi[:4] != 'http':
-            doi = 'http://doi.org/{}'.format(doi)
+            doi = 'https://doi.org/{}'.format(doi)
         if doi is not None:
             line += ' <a href="{}">[doi]</a>'.format(doi)
 
