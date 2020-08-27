@@ -1,8 +1,0 @@
-@inproceedings{martins2012review,
-    author = "Martins, Joaquim and Hwang, John",
-    title = "Review and unification of methods for computing derivatives of multidisciplinary systems",
-    booktitle = "53rd AIAA/ASME/ASCE/AHS/ASC Structures, Structural Dynamics and Materials Conference 20th AIAA/ASME/AHS Adaptive Structures Conference 14th AIAA",
-    aiaa = "1589",
-    year = "2012",
-    doi = "10.2514/1.J052184"
-}

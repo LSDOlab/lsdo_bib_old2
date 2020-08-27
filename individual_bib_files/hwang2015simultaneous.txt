@@ -1,8 +1,0 @@
-@inproceedings{hwang2015simultaneous,
-    author = "Hwang, John and Roy, Satadru and Kao, Jason and Martins, Joaquim and Crossley, William A",
-    title = "Simultaneous aircraft allocation and mission optimization using a modular adjoint approach",
-    booktitle = "56th AIAA/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference",
-    aiaa = "0900",
-    year = "2015",
-    doi = "10.2514/6.2015-0900"
-}

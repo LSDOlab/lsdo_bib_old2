@@ -1,8 +1,0 @@
-@inproceedings{ha2019large,
-    author = "Ha, Tae Hyun and Lee, Keunseok and Hwang, John T",
-    title = "Large-scale design and economics optimization of eVTOL concepts for urban air mobility",
-    booktitle = "2019 AIAA/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference",
-    aiaa = "1218",
-    year = "2019",
-    doi = "10.2514/6.2019-1218"
-}

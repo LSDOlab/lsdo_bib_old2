@@ -1,8 +1,0 @@
-@inproceedings{kao2015modular,
-    author = "Kao, Jason and Hwang, John and Martins, Joaquim and Gray, Justin S and Moore, Kenneth T",
-    title = "A modular adjoint approach to aircraft mission analysis and optimization",
-    booktitle = "56th AIAA/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference",
-    aiaa = "0136",
-    year = "2015",
-    doi = "10.2514/6.2015-0136"
-}

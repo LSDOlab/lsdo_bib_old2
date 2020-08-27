@@ -1,7 +1,0 @@
-@inproceedings{hwang2019large,
-    author = "Hwang, John T and Jain, Arnav V and Ha, Tae H",
-    title = "Large-scale multidisciplinary design optimization—review and recommendations",
-    booktitle = "AIAA Aviation 2019 Forum",
-    aiaa = "3106",
-    year = "2019"
-}

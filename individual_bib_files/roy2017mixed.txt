@@ -1,8 +1,0 @@
-@inproceedings{roy2017mixed,
-    author = "Roy, Satadru and Moore, Kenneth and Hwang, John T and Gray, Justin S and Crossley, William A and Martins, Joaquim",
-    title = "A mixed integer efficient global optimization algorithm for the simultaneous aircraft allocation-mission-design problem",
-    booktitle = "58th AIAA/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference",
-    aiaa = "1305",
-    year = "2017",
-    doi = "10.2514/6.2017-1305"
-}

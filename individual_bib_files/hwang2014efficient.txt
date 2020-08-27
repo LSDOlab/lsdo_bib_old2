@@ -1,6 +1,0 @@
-@inproceedings{hwang2014efficient,
-    author = "Hwang, John",
-    title = "Efficient and Scalable Computational Design of a Small Satellite",
-    booktitle = "Proceedings of the 28th AIAA/USU Conference on Small Satellites",
-    year = "2014"
-}

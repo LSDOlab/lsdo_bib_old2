@@ -1,8 +1,0 @@
-@inproceedings{hwang2017reconfigurable,
-    author = "Hwang, John T",
-    title = "Reconfigurable model execution in the OpenMDAO framework",
-    booktitle = "18th AIAA/ISSMO Multidisciplinary Analysis and Optimization Conference",
-    aiaa = "3821",
-    year = "2017",
-    doi = "10.2514/6.2017-3821"
-}

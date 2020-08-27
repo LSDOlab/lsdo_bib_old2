@@ -1,8 +1,0 @@
-@article{bouhlel2019python,
-    author = "Bouhlel, Mohamed Amine and Hwang, John T. and Bartoli, Nathalie and Lafage, R{\'e}mi and Morlier, Joseph and Martins, Joaquim R. R. A.",
-    title = "A Python surrogate modeling framework with derivatives",
-    journal = "Advances in Engineering Software",
-    pages = "102662",
-    year = "2019",
-    publisher = "Elsevier"
-}

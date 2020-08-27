@@ -5,38 +5,56 @@ from pybtex.database.input import bibtex
 import pybtex
 
 
+bib_header = \
+r"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body>
+"""
+
+bib_heading = \
+r"""
+<h3 id="h.p_wWsYqgOg8L8R" class="zfr3Q JYVBee">{}</h3>
+"""
+
+bibtex_string = \
+r"""
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Bibtex for {}
+</title>
+</head>
+<body>
+<pre>
+{}
+</pre>
+</body>
+</html>
+"""
+
 class Bib2Html(object):
 
     def __init__(self):
         self.bib_dict = self._read_bib_file()
         self._write_bib_files()
-
-        self.header = \
-        r"""
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <style>
-        /* Make the image fully responsive */
-        .carousel-inner img {
-            width: 100%;
-            height: 100%;
-        }
-        </style>
-        </head>
-        <body>
-        """
-        self.heading = \
-        r"""
-        <h3 id="h.p_wWsYqgOg8L8R" class="zfr3Q JYVBee">{}</h3>
-        """
 
     def _read_bib_file(self):
         with open('lsdo.bib', 'r') as f:
@@ -51,8 +69,10 @@ class Bib2Html(object):
             bib_data = pybtex.database.BibliographyData({key: ref})
             bib_string = bib_data.to_string('bibtex')
 
-            with open('individual_bib_files/{}.txt'.format(key), 'w') as f:
-                f.write(bib_string[:-1])
+            html_string = bibtex_string.format(key, bib_string[:-1])
+
+            with open('individual_bib_files/{}.html'.format(key), 'w') as f:
+                f.write(html_string)
 
     def _write_line(self, key, ref, prefix):
         line = ''
@@ -123,12 +143,12 @@ class Bib2Html(object):
             if 'aiaa' in ref.fields:
                 line += ' (AIAA {}-{})'.format(ref.fields['year'], ref.fields['aiaa'])
 
-        bibtex_link = 'https://lsdolab.github.io/lsdo_bib/individual_bib_files/{}.txt'.format(key)
+        bibtex_link = 'https://lsdolab.github.io/lsdo_bib/individual_bib_files/{}.html'.format(key)
         line += ' <a href="{}">[bibtex]</a>'.format(bibtex_link)
 
         doi = ref.fields.get('doi', None)
         if doi is not None and doi[:4] != 'http':
-            doi = 'http://doi.acm.org/{}'.format(doi)
+            doi = 'http://doi.org/{}'.format(doi)
         if doi is not None:
             line += ' <a href="{}">[doi]</a>'.format(doi)
 
@@ -165,10 +185,10 @@ class Bib2Html(object):
 
     def write_html_by_type(self):        
         code = ''
-        code += self.header 
-        code += self.heading.format('Journal papers')
+        code += bib_header 
+        code += bib_heading.format('Journal papers')
         code += '\n'.join(self._get_lines(ref_type='article', prefix='[J{}]'))
-        code += self.heading.format('Conference papers')
+        code += bib_heading.format('Conference papers')
         code += '\n'.join(self._get_lines(ref_type='inproceedings', prefix='[J{}]'))
 
         with open ('bib_by_type.html', 'w') as f:
@@ -176,9 +196,9 @@ class Bib2Html(object):
 
     def write_html_by_year(self):
         code = ''
-        code += self.header 
+        code += bib_header 
         for year in [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012]:
-            code += self.heading.format(str(year))
+            code += bib_heading.format(str(year))
             code += '\n'.join(self._get_lines(year=str(year)))
 
         with open ('bib_by_year.html', 'w') as f:

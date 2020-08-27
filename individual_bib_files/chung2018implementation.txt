@@ -1,8 +1,0 @@
-@inproceedings{chung2018implementation,
-    author = "Chung, Hayoung and Hwang, John T and Gray, Justin S and Kim, Hyunsun A",
-    title = "Implementation of topology optimization using OpenMDAO",
-    booktitle = "2018 AIAA/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference",
-    aiaa = "0653",
-    year = "2018",
-    doi = "10.2514/6.2018-0653"
-}
