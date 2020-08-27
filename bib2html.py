@@ -51,7 +51,7 @@ class Bib2Html(object):
             bib_data = pybtex.database.BibliographyData({key: ref})
             bib_string = bib_data.to_string('bibtex')
 
-            with open('individual_bib_files/{}.bib'.format(key), 'w') as f:
+            with open('individual_bib_files/{}.txt'.format(key), 'w') as f:
                 f.write(bib_string[:-1])
 
     def _write_line(self, key, ref, prefix):
@@ -123,7 +123,7 @@ class Bib2Html(object):
             if 'aiaa' in ref.fields:
                 line += ' (AIAA {}-{})'.format(ref.fields['year'], ref.fields['aiaa'])
 
-        bibtex_link = 'https://lsdolab.github.io/lsdo_bib/individual_bib_files/{}.bib'.format(key)
+        bibtex_link = 'https://lsdolab.github.io/lsdo_bib/individual_bib_files/{}.txt'.format(key)
         line += ' <a href="{}">[bibtex]</a>'.format(bibtex_link)
 
         doi = ref.fields.get('doi', None)
