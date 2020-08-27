@@ -1,11 +1,16 @@
 from __future__ import division, print_function
 from six import iteritems
 
+from pybtex.database.input import bibtex
+import pybtex
+
 
 class Bib2Html(object):
 
     def __init__(self):
         self.bib_dict = self._read_bib_file()
+        self._write_bib_files()
+
         self.header = \
         r"""
         <!DOCTYPE html>
@@ -34,9 +39,6 @@ class Bib2Html(object):
         """
 
     def _read_bib_file(self):
-        from pybtex.database.input import bibtex
-        import pybtex
-
         with open('lsdo.bib', 'r') as f:
             bib_string = f.read()
 
@@ -44,7 +46,15 @@ class Bib2Html(object):
 
         return bib_dict
 
-    def _write_line(self, ref, prefix):
+    def _write_bib_files(self):
+        for key, ref in iteritems(self.bib_dict.entries):
+            bib_data = pybtex.database.BibliographyData({key: ref})
+            bib_string = bib_data.to_string('bibtex')
+
+            with open('individual_bib_files/{}.bib'.format(key), 'w') as f:
+                f.write(bib_string[:-1])
+
+    def _write_line(self, key, ref, prefix):
         line = ''
         line += prefix
 
@@ -91,12 +101,6 @@ class Bib2Html(object):
         # Paper title
         line += ' <q>{},</q>'.format(ref.fields['title'])
 
-        doi = ref.fields.get('doi', None)
-        if doi is not None and doi[:4] != 'http':
-            doi = 'http://doi.acm.org/{}'.format(doi)
-
-        pdf = ref.fields.get('pdf', None)
-
         # Journal papers:
         if ref.type == 'article':
             if 'journal' in ref.fields:
@@ -119,7 +123,16 @@ class Bib2Html(object):
             if 'aiaa' in ref.fields:
                 line += ' (AIAA {}-{})'.format(ref.fields['year'], ref.fields['aiaa'])
 
-        line += ' <a href="{}">[doi]</a>'.format(doi)
+        bibtex_link = 'https://lsdolab.github.io/lsdo_bib/individual_bib_files/{}.bib'.format(key)
+        line += ' <a href="{}">[bibtex]</a>'.format(bibtex_link)
+
+        doi = ref.fields.get('doi', None)
+        if doi is not None and doi[:4] != 'http':
+            doi = 'http://doi.acm.org/{}'.format(doi)
+        if doi is not None:
+            line += ' <a href="{}">[doi]</a>'.format(doi)
+
+        pdf = ref.fields.get('pdf', None)
         if pdf is not None:
             line += ' <a href="{}">[pdf]</a>'.format(pdf)
 
@@ -142,7 +155,7 @@ class Bib2Html(object):
             desired_type = ref_type is None or ref.type == ref_type
             desired_year = year is None or ref.fields['year'] == year
             if desired_type and desired_year:
-                line = self._write_line(ref, prefix.format(index))
+                line = self._write_line(key, ref, prefix.format(index))
                 lines.append('  <li>{}</li>'.format(line))
                 index -= 1
 
