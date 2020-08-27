@@ -164,7 +164,7 @@ class Bib2Html(object):
     def write_html_by_year(self):
         code = ''
         code += self.header 
-        for year in [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012]:
+        for year in [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012]:
             code += self.heading.format(str(year))
             code += '\n'.join(self._get_lines(year=str(year)))
 
